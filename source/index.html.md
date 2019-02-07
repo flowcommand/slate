@@ -132,3 +132,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 page | 1 | Page (each page contains 1000 items)
 
+<aside class="notice">
+Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
+</aside>
+
