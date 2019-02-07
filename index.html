@@ -313,6 +313,42 @@ You must replace <code>api-auth-token</code> with your personal API key.
 <aside class="success">
 Remember — add Authorization header to every request!
 </aside>
+<h3 id='response-flow-sensor-parameters'>Response Flow Sensor Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the flow sensor</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of flow sensor</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>Latitude GPS coordinate of sensor</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>Longitude GPS coordinate of sensor</td>
+</tr>
+<tr>
+<td>pipe_diameter</td>
+<td>Diameter of pipe in inches</td>
+</tr>
+<tr>
+<td>last_ping_flowrate</td>
+<td>Flowrate in bbls/day from most recent ping</td>
+</tr>
+<tr>
+<td>last_ping_datetime</td>
+<td>Datetime of most recent ping in UTC</td>
+</tr>
+</tbody></table>
 <h2 id='get-pings-for-a-specific-flow-sensor'>Get Pings for a Specific Flow Sensor</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"</span>
   -H <span class="s2">"Authorization: Token api-auth-token"</span>
 </code></pre>
@@ -341,6 +377,10 @@ Remember — add Authorization header to every request!
 <p>This endpoint retrieves pings for a given flow sensor, ordered by datetime of the sensor reading (newest to oldest).</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/&lt;FLOW_SENSOR_ID&gt;/pings/</code></p>
+
+<aside class="notice">
+Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
+</aside>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -355,10 +395,34 @@ Remember — add Authorization header to every request!
 <td>Page (each page contains 1000 items)</td>
 </tr>
 </tbody></table>
-
-<aside class="notice">
-Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
-</aside>
+<h3 id='response-ping-parameters'>Response Ping Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the ping</td>
+</tr>
+<tr>
+<td>sensor_id</td>
+<td>ID of associated flow sensor</td>
+</tr>
+<tr>
+<td>sensor_name</td>
+<td>Name of associated flow sensor</td>
+</tr>
+<tr>
+<td>flowrate</td>
+<td>Flowrate in bbls/day at time of ping</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>Datetime of ping in UTC</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
