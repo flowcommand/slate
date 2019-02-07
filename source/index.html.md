@@ -90,6 +90,18 @@ page | 1 | Page (each page contains 1000 items)
 Remember — add Authorization header to every request!
 </aside>
 
+### Response Flow Sensor Parameters
+
+Parameter | Description
+--------- | -----------
+id | ID of the flow sensor
+name | Name of flow sensor
+latitude | Latitude GPS coordinate of sensor
+longitude | Longitude GPS coordinate of sensor
+pipe_diameter | Diameter of pipe in inches
+last_ping_flowrate | Flowrate in bbls/day from most recent ping
+last_ping_datetime | Datetime of most recent ping in UTC
+
 ## Get Pings for a Specific Flow Sensor
 
 ```shell
@@ -126,13 +138,24 @@ This endpoint retrieves pings for a given flow sensor, ordered by datetime of th
 
 `GET https://app.flowcommand.com/api/v1/flow_sensors/<FLOW_SENSOR_ID>/pings/`
 
+<aside class="notice">
+Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
+</aside>
+
 ### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 page | 1 | Page (each page contains 1000 items)
 
-<aside class="notice">
-Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
-</aside>
+### Response Ping Parameters
+
+Parameter | Description
+--------- | -----------
+id | ID of the ping
+sensor_id | ID of associated flow sensor
+sensor_name | Name of associated flow sensor
+flowrate | Flowrate in bbls/day at time of ping
+datetime | Datetime of ping in UTC
+
 
