@@ -16,20 +16,22 @@ search: true
 Welcome to the FlowCommand API. You can use our API to access information on your FlowCommand flow sensors and pings (sensor readings) from those sensors.
 
 # Authentication
+FlowCommand supports two types of authentication - Token Auth and Basic Auth. All requests must be authenticated using one of the two schemes.
 
-> To authorize, use this code:
+You can request security credentials from your FlowCommand representative.
+
+### Token Auth
+> To authorize with Token Auth, use this code:
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
+curl https://app.flowcommand.com/api-path
   -H "Authorization: Token api-auth-token"
 ```
 
 > Make sure to replace `api-auth-token` with your API key.
 
-FlowCommand uses API keys to allow access to the API. You can request an API key from your FlowCommand representative.
-
-FlowCommand expects for the API key to be included in all API requests to the server in a header that looks like the following:
+With Token Auth, FlowCommand expects for the API key to be included in all API requests as an HTTP header like:
 
 `Authorization: Token api-auth-token`
 
@@ -37,13 +39,34 @@ FlowCommand expects for the API key to be included in all API requests to the se
 You must replace <code>api-auth-token</code> with your personal API key.
 </aside>
 
+### Basic Auth
+
+> To authorize with Basic Auth, use this code:
+
+```shell
+curl https://username:password@app.flowcommand.com/api-path
+
+OR
+
+curl https://app.flowcommand.com/api-path
+  -H "Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="
+```
+
+> Make sure to replace `username` and `password` with your API credentials.
+
+With Basic Auth you can include your username and password in the URL like:
+`https://username:password@app.flowcommand.com/api-path`
+
+Alternatively you can pass the Basic Auth credentials as an Authorization header. Make sure to base 64 encode your credentials formatted as "username:password" and include them in an HTTP header:
+
+`Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
+
 # Flow Sensors
 
 ## Get All Flow Sensors
 
 ```shell
 curl "https://app.flowcommand.com/api/v1/flow_sensors/"
-  -H "Authorization: Token api-auth-token"
 ```
 
 
@@ -87,7 +110,7 @@ Parameter | Default | Description
 page | 1 | Page (each page contains 1000 items)
 
 <aside class="success">
-Remember — add Authorization header to every request!
+Remember — you must authenticate each request using an Authorization token header or Basic Auth
 </aside>
 
 ### Response Flow Sensor Parameters
@@ -106,7 +129,6 @@ last_ping_datetime | Datetime of most recent ping in UTC
 
 ```shell
 curl "https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"
-  -H "Authorization: Token api-auth-token"
 ```
 
 > The above command returns JSON structured like this:
