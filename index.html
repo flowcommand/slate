@@ -223,6 +223,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#token-auth" class="toc-h2 toc-link" data-title="Token Auth">Token Auth</a>
+                  </li>
+                  <li>
+                    <a href="#basic-auth" class="toc-h2 toc-link" data-title="Basic Auth">Basic Auth</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#flow-sensors" class="toc-h1 toc-link" data-title="Flow Sensors">Flow Sensors</a>
@@ -243,28 +251,50 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the FlowCommand API. You can use our API to access information on your FlowCommand flow sensors and pings (sensor readings) from those sensors.</p>
 <h1 id='authentication'>Authentication</h1>
+<p>FlowCommand supports two types of authentication - Token Auth and Basic Auth. All requests must be authenticated using one of the two schemes.</p>
+
+<p>You can request security credentials from your FlowCommand representative.</p>
+<h3 id='token-auth'>Token Auth</h3>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authorize with Token Auth, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
+curl https://app.flowcommand.com/api-path
   -H <span class="s2">"Authorization: Token api-auth-token"</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>api-auth-token</code> with your API key.</p>
 </blockquote>
 
-<p>FlowCommand uses API keys to allow access to the API. You can request an API key from your FlowCommand representative.</p>
-
-<p>FlowCommand expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>With Token Auth, FlowCommand expects for the API key to be included in all API requests as an HTTP header like:</p>
 
 <p><code>Authorization: Token api-auth-token</code></p>
 
 <aside class="notice">
 You must replace <code>api-auth-token</code> with your personal API key.
 </aside>
+<h3 id='basic-auth'>Basic Auth</h3>
+<blockquote>
+<p>To authorize with Basic Auth, use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://username:password@app.flowcommand.com/api-path
+
+OR
+
+curl https://app.flowcommand.com/api-path
+  -H <span class="s2">"Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ="</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>username</code> and <code>password</code> with your API credentials.</p>
+</blockquote>
+
+<p>With Basic Auth you can include your username and password in the URL like:
+<code>https://username:password@app.flowcommand.com/api-path</code></p>
+
+<p>Alternatively you can pass the Basic Auth credentials as an Authorization header. Make sure to base 64 encode your credentials formatted as &quot;username:password&quot; and include them in an HTTP header:</p>
+
+<p><code>Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=</code></p>
 <h1 id='flow-sensors'>Flow Sensors</h1><h2 id='get-all-flow-sensors'>Get All Flow Sensors</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.flowcommand.com/api/v1/flow_sensors/"</span>
-  -H <span class="s2">"Authorization: Token api-auth-token"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -311,7 +341,7 @@ You must replace <code>api-auth-token</code> with your personal API key.
 </tbody></table>
 
 <aside class="success">
-Remember — add Authorization header to every request!
+Remember — you must authenticate each request using an Authorization token header or Basic Auth
 </aside>
 <h3 id='response-flow-sensor-parameters'>Response Flow Sensor Parameters</h3>
 <table><thead>
@@ -350,7 +380,6 @@ Remember — add Authorization header to every request!
 </tr>
 </tbody></table>
 <h2 id='get-pings-for-a-specific-flow-sensor'>Get Pings for a Specific Flow Sensor</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"</span>
-  -H <span class="s2">"Authorization: Token api-auth-token"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
