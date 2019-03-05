@@ -241,6 +241,9 @@
                   <li>
                     <a href="#get-pings-for-a-specific-flow-sensor" class="toc-h2 toc-link" data-title="Get Pings for a Specific Flow Sensor">Get Pings for a Specific Flow Sensor</a>
                   </li>
+                  <li>
+                    <a href="#get-flow-volume-for-a-specific-flow-sensor-and-time-range" class="toc-h2 toc-link" data-title="Get Flow Volume For a Specific Flow Sensor and Time Range">Get Flow Volume For a Specific Flow Sensor and Time Range</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -309,8 +312,8 @@ curl https://app.flowcommand.com/api-path
         </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.760435</span><span class="p">,</span><span class="w">
         </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-95.3698</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pipe_diameter"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.64</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_ping_flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">5356.92</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_ping_datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:41:02+00:00"</span><span class="w">
+        </span><span class="s2">"last_ping_flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">5356.9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_ping_datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:41:02Z"</span><span class="w">
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 2"</span><span class="p">,</span><span class="w">
@@ -318,14 +321,14 @@ curl https://app.flowcommand.com/api-path
         </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-95.3698</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pipe_diameter"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.14</span><span class="p">,</span><span class="w">
         </span><span class="s2">"last_ping_flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_ping_datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:15:08+00:00"</span><span class="w">
+        </span><span class="s2">"last_ping_datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:15:08Z"</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all flow sensors ordered by id.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/?page=1</code></p>
+<h3 id='query-string-parameters'>Query String Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -378,6 +381,10 @@ Remember — you must authenticate each request using an Authorization token hea
 <td>last_ping_datetime</td>
 <td>Datetime of most recent ping in UTC</td>
 </tr>
+<tr>
+<td>activated_at</td>
+<td>Datetime of when the sensor was activated</td>
+</tr>
 </tbody></table>
 <h2 id='get-pings-for-a-specific-flow-sensor'>Get Pings for a Specific Flow Sensor</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"</span>
 </code></pre>
@@ -392,25 +399,37 @@ Remember — you must authenticate each request using an Authorization token hea
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.99</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:15:08+00:00"</span><span class="w">
+        </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:15:08Z"</span><span class="w">
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T19:44:09+00:00"</span><span class="w">
+        </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T19:44:09Z"</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves pings for a given flow sensor, ordered by datetime of the sensor reading (newest to oldest).</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/&lt;FLOW_SENSOR_ID&gt;/pings/</code></p>
+<p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/&lt;FLOW_SENSOR_ID&gt;/pings/?page=1</code></p>
 
 <aside class="notice">
 Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
 </aside>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='path-parameters'>Path Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>FLOW_SENSOR_ID</td>
+<td>ID of Sensor</td>
+</tr>
+</tbody></table>
+<h3 id='query-string-parameters-2'>Query String Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -450,6 +469,70 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <tr>
 <td>datetime</td>
 <td>Datetime of ping in UTC</td>
+</tr>
+</tbody></table>
+<h2 id='get-flow-volume-for-a-specific-flow-sensor-and-time-range'>Get Flow Volume For a Specific Flow Sensor and Time Range</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://app.flowcommand.com/api/v1/flow_sensors/1/flow_volume/2019-02-27T10:00:00Z/2019-02-28T10:00:00Z/"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"flow_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.9</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T10:00:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T10:00:00Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves the total flow volume in bbls between the start and end dates for a given sensor. </p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/&lt;FLOW_SENSOR_ID&gt;/flow_volume/&lt;START&gt;/&lt;END&gt;/</code></p>
+
+<aside class="notice">
+Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
+</aside>
+<h3 id='path-parameters-2'>Path Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>FLOW_SENSOR_ID</td>
+<td>ID of Sensor</td>
+</tr>
+<tr>
+<td>START</td>
+<td>Start of period timestamp (in ISO 8601 format e.g. 2019-02-05T19:44:09Z)</td>
+</tr>
+<tr>
+<td>END</td>
+<td>End of period timestamp</td>
+</tr>
+</tbody></table>
+<h3 id='response-ping-parameters-2'>Response Ping Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sensor_id</td>
+<td>ID of associated flow sensor</td>
+</tr>
+<tr>
+<td>flow_volume</td>
+<td>Flow Volume between start and end dates in bbls</td>
+</tr>
+<tr>
+<td>start</td>
+<td>Start timestamp</td>
+</tr>
+<tr>
+<td>end</td>
+<td>End timestamp</td>
 </tr>
 </tbody></table>
 
