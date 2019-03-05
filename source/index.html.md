@@ -83,8 +83,8 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/"
 		"latitude": 29.760435,
 		"longitude": -95.3698,
 		"pipe_diameter": 14.64,
-		"last_ping_flowrate": 5356.92,
-		"last_ping_datetime": "2019-02-05T20:41:02+00:00"
+		"last_ping_flowrate": 5356.9,
+		"last_ping_datetime": "2019-02-05T20:41:02Z"
 	}, {
 		"id": 2,
 		"name": "Sensor 2",
@@ -92,7 +92,7 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/"
 		"longitude": -95.3698,
 		"pipe_diameter": 19.14,
 		"last_ping_flowrate": 0,
-		"last_ping_datetime": "2019-02-05T20:15:08+00:00"
+		"last_ping_datetime": "2019-02-05T20:15:08Z"
 	}]
 }
 ```
@@ -101,9 +101,9 @@ This endpoint retrieves all flow sensors ordered by id.
 
 ### HTTP Request
 
-`GET https://app.flowcommand.com/api/v1/flow_sensors/`
+`GET https://app.flowcommand.com/api/v1/flow_sensors/?page=1`
 
-### Query Parameters
+### Query String Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -124,6 +124,7 @@ longitude | Longitude GPS coordinate of sensor
 pipe_diameter | Diameter of pipe in inches
 last_ping_flowrate | Flowrate in bbls/day from most recent ping
 last_ping_datetime | Datetime of most recent ping in UTC
+activated_at | Datetime of when the sensor was activated
 
 ## Get Pings for a Specific Flow Sensor
 
@@ -142,14 +143,14 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"
 		"id": 1,
 		"sensor_id": 1,
 		"sensor_name": "Sensor 1",
-		"flowrate": 759.99,
-		"datetime": "2019-02-05T20:15:08+00:00"
+		"flowrate": 759.9,
+		"datetime": "2019-02-05T20:15:08Z"
 	}, {
 		"id": 2,
 		"sensor_id": 1,
 		"sensor_name": "Sensor 1",
 		"flowrate": 0.0,
-		"datetime": "2019-02-05T19:44:09+00:00"
+		"datetime": "2019-02-05T19:44:09Z"
 	}]
 }
 ```
@@ -158,13 +159,19 @@ This endpoint retrieves pings for a given flow sensor, ordered by datetime of th
 
 ### HTTP Request
 
-`GET https://app.flowcommand.com/api/v1/flow_sensors/<FLOW_SENSOR_ID>/pings/`
+`GET https://app.flowcommand.com/api/v1/flow_sensors/<FLOW_SENSOR_ID>/pings/?page=1`
 
 <aside class="notice">
 Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
 </aside>
 
-### URL Parameters
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_SENSOR_ID | ID of Sensor
+
+### Query String Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -180,4 +187,49 @@ sensor_name | Name of associated flow sensor
 flowrate | Flowrate in bbls/day at time of ping
 datetime | Datetime of ping in UTC
 
+
+## Get Flow Volume For a Specific Flow Sensor and Time Range
+
+```shell
+curl "https://app.flowcommand.com/api/v1/flow_sensors/1/flow_volume/2019-02-27T10:00:00Z/2019-02-28T10:00:00Z/"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "sensor_id": 1,
+  "sensor_name": "Sensor 1",
+  "flow_volume": 759.9,
+  "start": "2019-02-27T10:00:00Z",
+  "end": "2019-02-28T10:00:00Z"
+}
+```
+
+This endpoint retrieves the total flow volume in bbls between the start and end dates for a given sensor. 
+
+### HTTP Request
+
+`GET https://app.flowcommand.com/api/v1/flow_sensors/<FLOW_SENSOR_ID>/flow_volume/<START>/<END>/`
+
+<aside class="notice">
+Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors request.
+</aside>
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_SENSOR_ID | ID of Sensor
+START | Start of period timestamp (in ISO 8601 format e.g. 2019-02-05T19:44:09Z)
+END | End of period timestamp
+
+### Response Ping Parameters
+
+Parameter | Description
+--------- | -----------
+sensor_id | ID of associated flow sensor
+flow_volume | Flow Volume between start and end dates in bbls
+start | Start timestamp
+end | End timestamp
 
