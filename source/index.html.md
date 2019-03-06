@@ -235,3 +235,56 @@ flow_volume | Flow Volume between start and end dates in bbls
 start | Start timestamp
 end | End timestamp
 
+
+## Get Hourly Flow Volumes For a Specific Flow Sensor
+
+```shell
+curl "https://app.flowcommand.com/api/v1/flow_sensors/1/flow_volume_hours/2019-02-27T10:00:00Z/2019-02-27T12:00:00Z/"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"count": 2,
+	"next": null,
+	"previous": null,
+	"results": [{
+    "sensor_id": 1,
+    "sensor_name": "Sensor 1",
+    "flow_volume": 759.9,
+    "start": "2019-02-27T11:00:00Z",
+    "end": "2019-02-27T12:00:00Z"
+	}, {
+    "sensor_id": 1,
+    "sensor_name": "Sensor 1",
+    "flow_volume": 356.1,
+    "start": "2019-02-27T10:00:00Z",
+    "end": "2019-02-27T11:00:00Z"
+	}]
+}
+```
+
+This endpoint retrieves hourly flow volumes for a given flow sensor, ordered from newest to oldest.
+
+### HTTP Request
+
+`GET https://app.flowcommand.com/api/v1/flow_sensors/<FLOW_SENSOR_ID>/flow_volume_hours/<START>/<END>/`
+
+### Path Parameters
+
+Parameter | Description
+--------- | -----------
+FLOW_SENSOR_ID | ID of Sensor
+START | Start of range timestamp (in ISO 8601 format e.g. 2019-02-05T19:44:09Z)
+END | End of range timestamp
+
+### Response Flow Volume Hour Parameters
+
+Parameter | Description
+--------- | -----------
+sensor_id | ID of flow sensor
+sensor_name | Name of flow sensor
+flow_volume | Flow Volume for the hour in bbls
+start | Start timestamp of the hour
+end | End timestamp of the hour
