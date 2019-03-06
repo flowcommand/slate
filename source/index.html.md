@@ -103,7 +103,7 @@ This endpoint retrieves all flow sensors ordered by id.
 
 `GET https://app.flowcommand.com/api/v1/flow_sensors/?page=1`
 
-### Query String Parameters
+### Optional Query String Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -171,11 +171,13 @@ Parameter | Description
 --------- | -----------
 FLOW_SENSOR_ID | ID of Sensor
 
-### Query String Parameters
+### Optional Query String Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
 page | 1 | Page (each page contains 1000 items)
+start| datetime of first ping | Include only pings after this date (in ISO 8601 format e.g. 2019-02-05T19:44:09Z)
+end | datetime of last ping |  Include only pings before this date
 
 ### Response Ping Parameters
 
