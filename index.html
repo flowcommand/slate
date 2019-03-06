@@ -328,7 +328,7 @@ curl https://app.flowcommand.com/api-path
 <p>This endpoint retrieves all flow sensors ordered by id.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://app.flowcommand.com/api/v1/flow_sensors/?page=1</code></p>
-<h3 id='query-string-parameters'>Query String Parameters</h3>
+<h3 id='optional-query-string-parameters'>Optional Query String Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -429,7 +429,7 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <td>ID of Sensor</td>
 </tr>
 </tbody></table>
-<h3 id='query-string-parameters-2'>Query String Parameters</h3>
+<h3 id='optional-query-string-parameters-2'>Optional Query String Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -441,6 +441,16 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <td>page</td>
 <td>1</td>
 <td>Page (each page contains 1000 items)</td>
+</tr>
+<tr>
+<td>start</td>
+<td>datetime of first ping</td>
+<td>Include only pings after this date (in ISO 8601 format e.g. 2019-02-05T19:44:09Z)</td>
+</tr>
+<tr>
+<td>end</td>
+<td>datetime of last ping</td>
+<td>Include only pings before this date</td>
 </tr>
 </tbody></table>
 <h3 id='response-ping-parameters'>Response Ping Parameters</h3>
