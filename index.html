@@ -627,7 +627,7 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 </tr>
 </tbody></table>
 <h1 id='webhook-endpoints'>Webhook Endpoints</h1>
-<p>Set up a webhook in order to receive a POST request each time an incoming transmission is received. Each request will include the following data:</p>
+<p>Set up a webhook endpoint in order to receive a POST request each time an incoming transmission is received. Each request will include the following data:</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping_received"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"api_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
@@ -640,7 +640,7 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>To add a webhook, go to the webhook configuration tool at https://app.flowcommand.com/app/developers</p>
+<p>To add a webhook endpoint, go to the webhook configuration tool at https://app.flowcommand.com/app/developers</p>
 
 <p>Each webhook POST request will include an authentication HTTP header. The header name is &quot;FC-Signature&quot; and the secret value is shown in the webhook configuration tool.</p>
 
