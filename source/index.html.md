@@ -290,7 +290,7 @@ start | Start timestamp of the hour
 end | End timestamp of the hour
 
 # Webhook Endpoints
-Set up a webhook in order to receive a POST request each time an incoming transmission is received. Each request will include the following data:
+Set up a webhook endpoint in order to receive a POST request each time an incoming transmission is received. Each request will include the following data:
 
 ```json
 {
@@ -306,7 +306,7 @@ Set up a webhook in order to receive a POST request each time an incoming transm
 }
 ```
 
-To add a webhook, go to the webhook configuration tool at https://app.flowcommand.com/app/developers
+To add a webhook endpoint, go to the webhook configuration tool at https://app.flowcommand.com/app/developers
 
 Each webhook POST request will include an authentication HTTP header. The header name is "FC-Signature" and the secret value is shown in the webhook configuration tool.
 
