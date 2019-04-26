@@ -288,3 +288,25 @@ sensor_name | Name of flow sensor
 flow_volume | Flow Volume for the hour in bbls
 start | Start timestamp of the hour
 end | End timestamp of the hour
+
+# Webhook Endpoints
+Set up a webhook in order to receive a POST request each time an incoming transmission is received. Each request will include the following data:
+
+```json
+{
+  "type": "ping_received",
+  "api_version": "1",
+	"data": {
+		"id": 2,
+		"sensor_id": 1,
+		"sensor_name": "Sensor 1",
+		"flowrate": 0.0,
+		"datetime": "2019-02-05T19:44:09Z"
+	}
+}
+```
+
+To add a webhook, go to the webhook configuration tool at https://app.flowcommand.com/app/developers
+
+Each webhook POST request will include an authentication HTTP header. The header name is "FC-Signature" and the secret value is shown in the webhook configuration tool.
+
