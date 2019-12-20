@@ -80,6 +80,7 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/"
 	"results": [{
 		"id": 1,
 		"name": "Sensor 1",
+		"tag": "custom_tag",
 		"latitude": 29.760435,
 		"longitude": -95.3698,
 		"pipe_diameter": 14.64,
@@ -88,6 +89,7 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/"
 	}, {
 		"id": 2,
 		"name": "Sensor 2",
+		"tag": "custom_tag",
 		"latitude": 29.760435,
 		"longitude": -95.3698,
 		"pipe_diameter": 19.14,
@@ -119,6 +121,7 @@ Parameter | Description
 --------- | -----------
 id | ID of the flow sensor
 name | Name of flow sensor
+tag | Custom tag of flow sensor
 latitude | Latitude GPS coordinate of sensor
 longitude | Longitude GPS coordinate of sensor
 pipe_diameter | Diameter of pipe in inches
@@ -143,12 +146,14 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/1/pings/"
 		"id": 1,
 		"sensor_id": 1,
 		"sensor_name": "Sensor 1",
+        "sensor_tag": "custom_tag",
 		"flowrate": 759.9,
 		"datetime": "2019-02-05T20:15:08Z"
 	}, {
 		"id": 2,
 		"sensor_id": 1,
 		"sensor_name": "Sensor 1",
+        "sensor_tag": "custom_tag",
 		"flowrate": 0.0,
 		"datetime": "2019-02-05T19:44:09Z"
 	}]
@@ -186,6 +191,7 @@ Parameter | Description
 id | ID of the ping
 sensor_id | ID of associated flow sensor
 sensor_name | Name of associated flow sensor
+sensor_tag | Custom tag of associated flow sensor
 flowrate | Flowrate in bbls/day at time of ping
 datetime | Datetime of ping in UTC
 
@@ -202,6 +208,7 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/1/flow_volume/2019-02-27T1
 {
   "sensor_id": 1,
   "sensor_name": "Sensor 1",
+  "sensor_tag": "custom_tag",
   "flow_volume": 759.9,
   "start": "2019-02-27T10:00:00Z",
   "end": "2019-02-28T10:00:00Z"
@@ -252,12 +259,14 @@ curl "https://app.flowcommand.com/api/v1/flow_sensors/1/flow_volume_hours/2019-0
 	"results": [{
     "sensor_id": 1,
     "sensor_name": "Sensor 1",
+    "sensor_tag": "custom_tag",
     "flow_volume": 759.9,
     "start": "2019-02-27T11:00:00Z",
     "end": "2019-02-27T12:00:00Z"
 	}, {
     "sensor_id": 1,
     "sensor_name": "Sensor 1",
+    "sensor_tag": "custom_tag",
     "flow_volume": 356.1,
     "start": "2019-02-27T10:00:00Z",
     "end": "2019-02-27T11:00:00Z"
@@ -285,6 +294,7 @@ Parameter | Description
 --------- | -----------
 sensor_id | ID of flow sensor
 sensor_name | Name of flow sensor
+sensor_tag | Custom tag of flow sensor
 flow_volume | Flow Volume for the hour in bbls
 start | Start timestamp of the hour
 end | End timestamp of the hour
@@ -300,6 +310,7 @@ Set up a webhook endpoint in order to receive a POST request each time an incomi
 		"id": 2,
 		"sensor_id": 1,
 		"sensor_name": "Sensor 1",
+		"sensor_tag": "custom_tag",
 		"flowrate": 0.0,
 		"datetime": "2019-02-05T19:44:09Z"
 	}
