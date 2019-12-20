@@ -315,6 +315,7 @@ curl https://app.flowcommand.com/api-path
     </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.760435</span><span class="p">,</span><span class="w">
         </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-95.3698</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pipe_diameter"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.64</span><span class="p">,</span><span class="w">
@@ -323,6 +324,7 @@ curl https://app.flowcommand.com/api-path
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.760435</span><span class="p">,</span><span class="w">
         </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-95.3698</span><span class="p">,</span><span class="w">
         </span><span class="s2">"pipe_diameter"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.14</span><span class="p">,</span><span class="w">
@@ -368,6 +370,10 @@ Remember — you must authenticate each request using an Authorization token hea
 <td>Name of flow sensor</td>
 </tr>
 <tr>
+<td>tag</td>
+<td>Custom tag of flow sensor</td>
+</tr>
+<tr>
 <td>latitude</td>
 <td>Latitude GPS coordinate of sensor</td>
 </tr>
@@ -405,12 +411,14 @@ Remember — you must authenticate each request using an Authorization token hea
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.9</span><span class="p">,</span><span class="w">
         </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T20:15:08Z"</span><span class="w">
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T19:44:09Z"</span><span class="w">
     </span><span class="p">}]</span><span class="w">
@@ -479,6 +487,10 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <td>Name of associated flow sensor</td>
 </tr>
 <tr>
+<td>sensor_tag</td>
+<td>Custom tag of associated flow sensor</td>
+</tr>
+<tr>
 <td>flowrate</td>
 <td>Flowrate in bbls/day at time of ping</td>
 </tr>
@@ -495,6 +507,7 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"flow_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.9</span><span class="p">,</span><span class="w">
   </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T10:00:00Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-28T10:00:00Z"</span><span class="w">
@@ -563,12 +576,14 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
     </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"flow_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">759.9</span><span class="p">,</span><span class="w">
     </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T11:00:00Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T12:00:00Z"</span><span class="w">
     </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"flow_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">356.1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T10:00:00Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-27T11:00:00Z"</span><span class="w">
@@ -614,6 +629,10 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
 <td>Name of flow sensor</td>
 </tr>
 <tr>
+<td>sensor_tag</td>
+<td>Custom tag of flow sensor</td>
+</tr>
+<tr>
 <td>flow_volume</td>
 <td>Flow Volume for the hour in bbls</td>
 </tr>
@@ -635,6 +654,7 @@ Replace &lt;FLOW_SENSOR_ID&gt; with an integer ID from the Get All Flow Sensors 
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"sensor_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sensor 1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sensor_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_tag"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"flowrate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-05T19:44:09Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
